@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    /*Denis merupakan pecinta jangkrik. Suatu hari dia ingin bermain-main dengan kedua jangkrik favoritnya.
+    Jangkrik tersebut diletakkan pada sebuah lintasan lurus.
+    Jangkrik pertama diletakkan pada posisi x1 dan bergerak sebesar v1 setiap kali melompat.
+    Jangkrik kedua diletakkan pada posisi x2 dan bergerak sebesar v2 setiap kali melompat.
+    Denis ingin mengetahui apakah kedua jangkrik tersebut dapat berada pada tempat yang sama di waktu yang sama.
+
+    Misalkan:
+    jangkrik pertama diletakkan pada x1 = 2 dengan panjang lompatan v1 = 1 dan
+    jangkrik kedua diletakkan pada x2 = 1 dengan panjang lompatan v2 = 2.
+    Setelah 1 kali melompat mereka berada pada posisi X = 3, (x1 + v1 = 2 + 1, x2 + v2 = 1 + 2),
+    Jadi kedua jangkrik tersebut dapat berada pada tempat*/
+
+    int x1; //posisi awal jangkrik 1
+    int x2; //posisi awal jangkrik 2
+    int v1; //seberapa jauh jangkrik 1 melompat
+    int v2; //seberapa jauh jangkri 2 melompat
+    int i = 0, j = 0; //variabel pencacah untuk mengatur perulangan loop
+
+    printf("ADU LONCAT JANGKRIK\n\n");
+    printf("Aturan:"); //Peraturan yang harus diikuti oleh pengguna
+    printf("\tposisi jangkrik bisa mulai dari 0 hingga 1000\n");
+    printf("\tposisi jangkrik 1 harus LEBIH KECIL dari posisi jangkrik 2\n");
+    printf("\tjarak lompatan jangkrik berada pada rentang 1 hingga 1000\n\n");
+
+    while (i != 1){ //loop digunakan untuk memastikan input posisi jangkrik sesuai dengan aturan
+        printf("Masukkan posisi jangkrik 1: ");
+        scanf("%d", &x1); //menginput lokasi awal jangkrik 1
+        printf("Masukkan posisi jangkrik 2: ");
+        scanf("%d", &x2); //menginput lokasi awal jangkrik 2
+
+        if(x1 < x2 &&
+           x1 >= 0 &&
+           x1 <= 1000 &&
+           x2 >= 0 &&
+           x2 <= 1000){//jika sekumpulan peraturan yang ada telah dipatuhi,
+            ++i; //program dapat keluar dari loop
+        }
+        else { //jika peratuan gagal dipatuhi, program akan menyuruh pengguna untuk menginput kembali posisi awal jangkrik
+            printf("INPUT BELUM SESUAI\nMasukkan kembali input\n\n");
+        }
+    }
+    while (j != 1){ //loop digunakan untuk memastikan input jarak lompatan jangkrik sesuai dengan aturan
+        printf("Masukkan seberapa jauh jangkrik 1 melompat: ");
+        scanf("%d", &v1); //menginput jarak lompatan jangkrik 1
+        printf("Masukkan seberapa jauh jangkrik 2 melompat: ");
+        scanf("%d", &v2); //menginput jarak lompatan jangkrik 2
+
+        if(v1 >= 1 &&
+           v1 <= 1000 &&
+           v2 >= 1 &&
+           v2 <= 1000){//jika peraturan telah dipatuhi,
+            ++j; //program bisa keluar dari loop dan lanjut ke perintah berikutnya
+        }
+        else { //jika peraturan gagal dipatuhi, program akan menyuruh pengguna untuk menginput kembali
+            printf("INPUT BELUM SESUAI\nMasukkan kembali input\n\n");
+        }
+    }
+    for(i = 0; x1 != x2 && x1 <= 1000 && x2 <= 1000; i++){ //loop untuk membuat perhitungan loncatan dari jangkrik
+        x1 += v1; //dari posisi x1, jangkrik 1 akan terus melompat dengan jarak v1
+        x2 += v2; //dari posisi x2, jangkrik 2 akan terus melompat dengan jarak v2
+    }//program akan keluar dari loop jika:
+    // (posisi jangkrik 1 dan jangkrik 2 sama)
+    //ATAU (posisi jangkrik 1 atau jankrik 2 sudah melebihi 1000)
+
+    if (x1 == x2){
+        printf("\nYES\n");
+        printf("Mereka bertemu pada jarak %d\n", x1);
+    }
+    else {
+        printf("\nNO\n");
+        printf("Mereka tidak bertemu\n");
+        printf("Posisi terakhir jangkrik 1 adalah %d\n", x1);
+        printf("Posisi terakhir jangkrik 2 adalah %d\n", x2);
+    }
+    return 0;
+}
